@@ -1,0 +1,26 @@
+{
+    "plugins": [
+        "stylelint-scss"
+    ],
+    "extends": [
+        "stylelint-config-standard",
+        "stylelint-prettier/recommended"
+    ],
+    "rules": {
+        "indentation": 4,
+        "selector-pseudo-element-no-unknown": [
+            true,
+            {"ignorePseudoElements": ["ng-deep"]}
+        ],
+        "at-rule-no-unknown": null,
+        "scss/at-rule-no-unknown": true,
+        "no-empty-source": null,
+        "color-function-notation": "legacy"
+    },
+    "overrides": [
+        {
+            "files": ["**/*.scss"],
+            "customSyntax": "postcss-scss"
+        }
+    ]
+}

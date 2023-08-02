@@ -1,0 +1,11 @@
+.register-message-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .register-button-group {
+    display: flex;
+    gap: 1.2rem;
+  }
+}

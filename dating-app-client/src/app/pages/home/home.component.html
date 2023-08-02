@@ -1,0 +1,26 @@
+<div class="container mt-5">
+  <div *ngIf="registerMode; else notRegisterMode" class="container">
+    <div class="row justify-content-center">
+      <div class="col-4">
+        <app-register-user (cancelRegistration)="setRegisterMode(false)"></app-register-user>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #notRegisterMode>
+    <div class="register-message-content">
+      <h1>Find your match!</h1>
+      <p class="lead">Come on in to view your matches...all you need to do is sign up!</p>
+      <div class="register-button-group">
+        <button
+          pButton
+          type="button"
+          label="Register"
+          icon="pi pi-user-plus"
+          class="p-button-success"
+          (click)="setRegisterMode(true)"></button>
+        <button pButton type="button" label="Learn More" icon="pi pi-info-circle" class="p-button"></button>
+      </div>
+    </div>
+  </ng-template>
+</div>

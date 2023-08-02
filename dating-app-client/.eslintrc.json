@@ -1,0 +1,44 @@
+/* Setup from https://github.com/angular-eslint/angular-eslint */
+{
+  "root": true,
+  "ignorePatterns": ["projects/**/*"],
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "parserOptions": {
+        "project": ["tsconfig.json"],
+        "createDefaultProgram": true,
+        "ecmaVersion": 2020, // Allows for the parsing of modern ECMAScript features
+        "sourceType": "module" // Allows for the use of imports
+      },
+      "extends": [
+        "plugin:@angular-eslint/recommended",
+        // "plugin:@typescript-eslint/recommended",
+        // "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        // "plugin:@angular-eslint/template/process-inline-templates", // Used for processing inline templates
+        "plugin:prettier/recommended" // This will display prettier errors as ESLint errors. Make sure this is always the last configuration in the extends array.
+      ],
+      "rules": {
+        "@angular-eslint/component-selector": [],
+        "@angular-eslint/directive-selector": []
+      }
+    },
+    // Template checks
+    {
+      "files": ["*.html"],
+      "extends": ["plugin:@angular-eslint/template/recommended", "plugin:prettier/recommended"],
+      "rules": {}
+    }
+    // Template overrides for Prettier for processing inline templates
+    // Note: This is very slow
+    /* {
+          "files": ["*.html"],
+          "excludedFiles": ["*inline-template-*.component.html"],
+          "extends": ["plugin:prettier/recommended"],
+          "rules": {
+            // NOTE: WE ARE OVERRIDING THE DEFAULT CONFIG TO ALWAYS SET THE PARSER TO ANGULAR (SEE BELOW)
+            "prettier/prettier": ["error", { "parser": "angular"}]
+          }
+      } */
+  ]
+}
