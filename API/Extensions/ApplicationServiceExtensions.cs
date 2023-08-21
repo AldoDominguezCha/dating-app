@@ -9,10 +9,19 @@ namespace API.Extensions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration config)
         {
+            //string sqlConnectionString = config.GetConnectionString("DatingApp:SqlDb");
+            string sqlConnectionString = config["ConnectionStrings:DatingApp:SqlDb"];
+
             services.AddDbContext<DataContext>(opt =>
             {
-                opt.UseSqlite(config.GetConnectionString("DefaultConnection"));
+                /*
+                Replace SQLite integration in favor of SQLServer instance in Azure
+                opt.UseSqlite(config.GetConnectionString("DefaultConnection")); 
+                */
+                opt.UseSqlServer(sqlConnectionString, opt => opt.EnableRetryOnFailure());
             });
+            
+
             services.AddCors();
             services.AddScoped<ITokenService, TokenService>();
 
