@@ -1,18 +1,35 @@
-.navbar .container {
-  box-sizing: border-box;
-  height: 62px;
+nav.navbar {
+  padding: 4px 0;
 
-  .navbar-nav .nav-item .nav-link {
-    cursor: pointer;
+  .container {
+    box-sizing: border-box;
+    height: 62px;
+    padding: 0;
+
+    .navigation-bar {
+      .nav-item {
+        margin: 0 10px;
+
+        & > .active-link {
+          border-radius: 8px;
+          color: white;
+          border: 1px solid white;
+        }
+      }
+    }
+
+    .navbar-nav .nav-item .nav-link {
+      cursor: pointer;
+    }
   }
-}
 
-.top-login-form {
-  height: 100%;
-  padding: 10px;
+  .top-login-form {
+    height: 100%;
+    padding: 10px;
 
-  .btn {
-    font-size: 0.875rem;
-    white-space: nowrap;
+    .btn {
+      font-size: 0.875rem;
+      white-space: nowrap;
+    }
   }
 }

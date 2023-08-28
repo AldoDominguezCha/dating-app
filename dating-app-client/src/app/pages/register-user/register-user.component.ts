@@ -1,7 +1,10 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ConfirmationService } from 'primeng/api';
-import { UserAccountService } from 'src/app/common/services/user-account.service';
+import { ToastrService } from 'ngx-toastr';
+
+import { UserAccountService } from 'src/app/common/services/user-auth/user-account.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-register-user',
@@ -13,7 +16,11 @@ export class RegisterUserComponent implements OnInit {
 
   @Output() cancelRegistration = new EventEmitter();
 
-  constructor(private userAccountService: UserAccountService, private confirmationService: ConfirmationService) {}
+  constructor(
+    private userAccountService: UserAccountService,
+    private confirmationService: ConfirmationService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.initializeRegisterForm();
@@ -31,6 +38,9 @@ export class RegisterUserComponent implements OnInit {
       next: (user) => {
         this.registerUserForm.reset();
         this.onCancel();
+      },
+      error: (error: HttpErrorResponse) => {
+        this.toastr.error(error.error?.error);
       },
     });
   }

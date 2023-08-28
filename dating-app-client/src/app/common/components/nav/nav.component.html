@@ -1,24 +1,30 @@
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+<nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
   <div class="container">
-    <a class="navbar-brand" href="#">Dating App</a>
-    <ul class="navbar-nav me-auto mb-2 mb-md-0" *ngIf="!!currentUser">
+    <a class="navbar-brand" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Dating App</a>
+    <ul class="navigation-bar navbar-nav me-auto mb-2 mb-md-0">
+      <ng-container *ngIf="!!currentUser">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/', 'members']" routerLinkActive="active">Matches</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/', 'lists']" routerLinkActive="active">Lists</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/', 'messages']" routerLinkActive="active">Messages</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="logOut()">Log Out</a>
+        </li>
+      </ng-container>
       <li class="nav-item">
-        <a class="nav-link">Matches</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link">Lists</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link">Messages</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" (click)="logOut()">Log Out</a>
+        <a class="nav-link" [routerLink]="['/', 'test-errors']" routerLinkActive="active">Errors</a>
       </li>
     </ul>
 
     <span *ngIf="!!currentUser; else notLoggedIn">
       <button
         type="button"
+        class="bg-info"
         pButton
         icon="pi pi-bars"
         label="Welcome, {{ currentUser.username | titlecase }}!"
@@ -30,7 +36,7 @@
       <form #loginForm="ngForm" class="d-flex top-login-form" (ngSubmit)="onSubmit()" autocomplete="off">
         <input name="username" ngModel class="form-control me-2" type="text" placeholder="Username" />
         <input name="password" ngModel class="form-control me-2" type="password" placeholder="Username" />
-        <button class="btn btn-outline-success" type="submit">Log In</button>
+        <button class="btn btn-danger" type="submit">Log In</button>
       </form>
     </ng-template>
   </div>
