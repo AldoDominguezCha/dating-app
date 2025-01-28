@@ -486,3 +486,6 @@ $RECYCLE.BIN/
 # Assets
 assets/
 */appsettings.json
+
+# publish artefacts folder
+published/
