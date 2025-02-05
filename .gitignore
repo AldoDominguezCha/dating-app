@@ -489,3 +489,7 @@ assets/
 
 # publish artefacts folder
 published/
+
+# Unnecessary sqlite files
+*/dating.db-shm
+*/dating.db-wal

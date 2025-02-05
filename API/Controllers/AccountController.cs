@@ -19,7 +19,7 @@ namespace API.Controllers
             if (await context.Users.AnyAsync(u => u.UserName.ToLower() == dto.Username.ToLower())) {
                 return BadRequest(new { errorType = ErrorTypeEnum.Validation, description = "The username is already taken" });
             }
-            
+
             using var hmac = new HMACSHA512();
 
             AppUser user = new()

@@ -1,9 +1,13 @@
 using API.Extensions;
+using Azure.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Keep only the console logger provider
+builder.Logging.ClearProviders().AddConsole();
 
+// Add services to the container.
+builder.Configuration.AddKeyVaultToApp();
 builder.Services.AddApplicationServices(builder.Configuration, ((IWebHostEnvironment)builder.Environment));
 builder.Services.AddIdentityServices(builder.Configuration);
 

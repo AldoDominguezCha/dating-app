@@ -11,7 +11,7 @@ namespace API.Extensions
             // Add the JWT authentication service
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options => {
-                    string tokenKey = config["TokenKey"] ?? throw new Exception("The token key was not found");
+                    string tokenKey = config["Secrets:JWTTokenKey"] ?? throw new Exception("The token key was not found");
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuerSigningKey = true,

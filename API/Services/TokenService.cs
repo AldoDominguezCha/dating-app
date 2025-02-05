@@ -11,7 +11,7 @@ namespace API.Services
     {
         public string CreateToken(AppUser user)
         {
-            string tokenKey = config["TokenKey"] ?? throw new Exception("The token key could not be retrieved");
+            string tokenKey = config["Secrets:JWTTokenKey"] ?? throw new Exception("The token key could not be retrieved");
 
             if (tokenKey.Length < 64) throw new Exception("The token key is not at least 64 characters long");
 
