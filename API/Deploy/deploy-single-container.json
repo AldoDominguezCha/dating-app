@@ -1,0 +1,60 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {},
+  "variables": {},
+  "resources": [
+      {
+        "type": "Microsoft.ContainerInstance/containerGroups",
+        "apiVersion": "2021-09-01",
+        "name": "container-group-datingapp-dev",
+        "location": "mexicocentral",
+        "identity": {
+          "type": "UserAssigned",
+          "userAssignedIdentities": {
+            "/subscriptions/2e353b52-ce2b-479a-8f5e-0d74af3cf6bc/resourcegroups/rg-datingapp-dev-mexicocentral-001/providers/Microsoft.ManagedIdentity/userAssignedIdentities/man-identity-acrdatingapp-pull": {},
+            "/subscriptions/2e353b52-ce2b-479a-8f5e-0d74af3cf6bc/resourcegroups/rg-datingapp-dev-mexicocentral-001/providers/Microsoft.ManagedIdentity/userAssignedIdentities/man-identity-kvdatingappdev-secrets-reader": {}
+            }
+        },
+        "properties": {
+          "containers": [
+            {
+              "name": "datingapp-dev",
+              "properties": {
+                "image": "acrdatingapp.azurecr.io/datingapp:v1.1",
+                "ports": [
+                  {
+                    "port": 8080,
+                    "protocol": "TCP"
+                  }
+                ],
+                "resources": {
+                  "requests": {
+                    "cpu": 1,
+                    "memoryInGB": 1
+                  }
+                }
+            }
+            }
+          ],
+          "imageRegistryCredentials": [
+            {
+                "server":"acrdatingapp.azurecr.io",
+                "identity":"/subscriptions/2e353b52-ce2b-479a-8f5e-0d74af3cf6bc/resourcegroups/rg-datingapp-dev-mexicocentral-001/providers/Microsoft.ManagedIdentity/userAssignedIdentities/man-identity-acrdatingapp-pull"
+            }
+          ],
+          "ipAddress": {
+            "ports": [
+              {
+                "port": 8080,
+                "protocol": "TCP"
+              }
+            ],
+            "type": "public"
+          },
+          "osType": "Linux"
+        }
+      }
+  ],
+  "outputs": {}
+}
